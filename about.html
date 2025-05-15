@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MammoPredict | About</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo-nav">
+        <img src="/static/logo.jpg" alt="MammoPredict Logo" class="logo"/>
+        <h1>MammoPredict</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <!-- <li><a href="login.html">Login</a></li> -->
+          <!-- <li><a href="register.html">Register</a></li> -->
+          <li><a href="dashboard.html">My Account</a></li>
+          <li><a href="reports.html">My Reports</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="about">
+    <div class="container">
+      <h2>About MammoPredict</h2>
+      <p>MammoPredict is an AI-powered web application designed to assist with early breast cancer detection and analysis. Our platform uses advanced machine learning models such as Random Forest and Support Vector Machines (SVM) to deliver predictive insights based on user reports and symptoms. Whether uploading test reports or describing symptoms, MammoPredict empowers users with early awareness and actionable health information.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MammoPredict. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    // Redirect if not logged in
+    document.addEventListener("DOMContentLoaded", function () {
+      const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+      if (!isLoggedIn) {
+        alert("Please login first to access about section.");
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MammoPredict | Symptom Checker</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo-nav">
+        <img src="/static/logo.jpg" alt="MammoPredict Logo" class="logo"/>
+        <h1>MammoPredict</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/dashboard">My Account</a></li>
+          <li><a href="/myreports">My Reports</a></li>
+          <li><a href="/reports">Upload Report</a></li>
+          <li><a href="/symptoms">Symptom Checker</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="symptom-checker">
+    <div class="container">
+      <h2>Enter Symptoms</h2>
+      <form id="symptomForm">
+        <textarea id="symptomInput" placeholder="E.g., Clump thickness high, cell shape irregular..." rows="5" required></textarea>
+
+<script>
+  document.getElementById("symptomForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const symptoms = document.getElementById("symptomInput").value;
+
+    fetch("/predict_symptoms", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ symptoms: symptoms }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const resultDiv = document.getElementById("result");
+        if (data.result) {
+          resultDiv.innerHTML = <p><strong>Prediction:</strong> ${data.result}</p>;
+        } else if (data.error) {
+          resultDiv.innerHTML = <p style="color: red;">${data.error}</p>;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+</script>
+      <div id="result"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MammoPredict. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MammoPredict | Symptom Checker</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+  <style>
+    .symptom-checker {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    form#symptomForm {
+      background-color: #ffe6f0;
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      text-align: left;
+    }
+
+    form#symptomForm label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    form#symptomForm select,
+    form#symptomForm input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo-nav">
+        <img src="/static/logo.jpg" alt="MammoPredict Logo" class="logo"/>
+        <h1>MammoPredict</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/dashboard">My Account</a></li>
+          <li><a href="/myreports">My Reports</a></li>
+          <li><a href="/reports">Upload Report</a></li>
+          <li><a href="/symptoms">Symptom Checker</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="symptom-checker">
+    <div class="card p-4 mb-4 shadow rounded bg-white max-w-xl mx-auto">
+      <h2 class="text-xl font-semibold mb-4">Breast Cancer Prediction (Medical Inputs)</h2>
+      
+      <form id="predictionForm">
+        <label class="block mb-2">Clump Thickness (1–10):
+          <input type="number" min="1" max="10" name="clump_thickness" class="input" required />
+        </label>
+        <label class="block mb-2">Uniformity of Cell Size:
+          <input type="number" min="1" max="10" name="cell_size" class="input" required />
+        </label>
+        <label class="block mb-2">Uniformity of Cell Shape:
+          <input type="number" min="1" max="10" name="cell_shape" class="input" required />
+        </label>
+        <label class="block mb-2">Marginal Adhesion:
+          <input type="number" min="1" max="10" name="adhesion" class="input" required />
+        </label>
+        <label class="block mb-2">Single Epithelial Cell Size:
+          <input type="number" min="1" max="10" name="epithelial_size" class="input" required />
+        </label>
+        <label class="block mb-2">Bare Nuclei:
+          <input type="number" min="1" max="10" name="nuclei" class="input" required />
+        </label>
+        <label class="block mb-2">Bland Chromatin:
+          <input type="number" min="1" max="10" name="chromatin" class="input" required />
+        </label>
+        <label class="block mb-2">Normal Nucleoli:
+          <input type="number" min="1" max="10" name="nucleoli" class="input" required />
+        </label>
+        <label class="block mb-2">Mitoses:
+          <input type="number" min="1" max="10" name="mitoses" class="input" required />
+        </label>
+    
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-3 rounded hover:bg-blue-600">Predict</button>
+      </form>
+    
+      <div id="predictionResult" class="mt-4 text-lg font-bold text-center"></div>
+    </div>
+     -->
+    <!-- <div class="container">
+      <h2>Symptom Checker</h2>
+      <form id="symptomForm">
+        <label for="clump">Clump Thickness (1–10):</label>
+        <input type="number" id="clump" name="clump" min="1" max="10" required>
+
+        <label for="shape">Uniformity of Cell Shape (1–10):</label>
+        <input type="number" id="shape" name="shape" min="1" max="10" required>
+
+        <label for="nuclei">Bare Nuclei (1–10):</label>
+        <input type="number" id="nuclei" name="nuclei" min="1" max="10" required>
+
+        <button type="submit" class="btn">Analyze</button>
+      </form>
+      <div id="result"></div>
+    </div> -->
+  <!-- </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MammoPredict. All rights reserved.</p>
+    </div>
+  </footer> -->
+
+  <!-- <script>
+    document.getElementById('symptomForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const clump = document.getElementById('clump').value;
+      const shape = document.getElementById('shape').value;
+      const nuclei = document.getElementById('nuclei').value;
+
+      const response = await fetch('/predict_symptoms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ clump, shape, nuclei })
+      });
+
+      const result = await response.json();
+      document.getElementById('result').innerText = "Prediction: " + result.prediction;
+    });
+  </script> -->
+  <!-- <script>
+    document.getElementById('predictionForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const features = [
+        form.clump_thickness.value,
+        form.cell_size.value,
+        form.cell_shape.value,
+        form.adhesion.value,
+        form.epithelial_size.value,
+        form.nuclei.value,
+        form.chromatin.value,
+        form.nucleoli.value,
+        form.mitoses.value
+      ].map(Number);
+  
+      const res = await fetch('/predict_bc', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ features: features })
+      });
+  
+      const data = await res.json();
+      const resultDiv = document.getElementById('predictionResult');
+  
+      if (data.prediction) {
+        resultDiv.textContent = `Prediction: ${data.prediction}`;
+        resultDiv.classList.remove('text-red-500', 'text-green-500');
+        resultDiv.classList.add(data.prediction === 'Malignant' ? 'text-red-500' : 'text-green-500');
+      } else {
+        resultDiv.textContent = 'Error: ' + (data.error || 'Invalid input');
+        resultDiv.classList.add('text-red-500');
+      }
+    });
+  </script>
+  
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symptom Checker - MammoPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .symptom-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffe6f0;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #d1a3b0;
+        }
+        .symptom-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .symptom-form label {
+            display: block;
+            margin: 12px 0 4px;
+            font-weight: bold;
+        }
+        .symptom-form select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .analyze-btn {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #ff4da6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .analyze-btn:hover {
+            background-color: #e64596;
+        }
+        .result-box {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="symptom-container">
+        <h2>Breast Cancer Symptom Checker</h2>
+        <form method="POST" action="/predict" class="symptom-form">
+            {% for label in [
+                "Clump Thickness", "Uniformity of Cell Size", "Uniformity of Cell Shape",
+                "Marginal Adhesion", "Single Epithelial Cell Size", "Bare Nuclei",
+                "Bland Chromatin", "Normal Nucleoli", "Mitoses"
+            ] %}
+                <label>{{ label }}:</label>
+                <select name="{{ label|replace(' ', '_')|lower }}">
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            {% endfor %}
+            <button type="submit" class="analyze-btn">Analyze</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-box">
+            Result: <span style="color: {{ 'green' if prediction == 'Benign' else 'red' }}">{{ prediction }}</span>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

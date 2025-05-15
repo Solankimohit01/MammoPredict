@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MammoPredict | Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+  <!-- <style>
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+    .modal-content { background: #fff; padding: 20px; border-radius: 8px; width: 300px; text-align: center; }
+    .close { float: right; font-size: 18px; cursor: pointer; }
+    .settings-help-box button { display: block; margin: 10px auto; width: 70%; }
+  </style> -->
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo-nav">
+        <img src="/static/logo.jpg" alt="MammoPredict Logo" class="logo"/>
+        <h1>MammoPredict</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/dashboard">My Account</a></li>
+          <li><a href="/myreports">My Reports</a></li>
+          <li><a href="/reports">Upload Report</a></li>
+          <li><a href="/symptoms">Symptom Checker</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="container">
+      <h2 id="welcome-message">Welcome, {{ user.name }}!</h2>
+
+      <section class="user-info-box">
+        <h3>Your Information</h3>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Registered on:</strong> {{ user.registration_date }}</p>
+      </section>
+
+      <section class="settings-help-box">
+        <h3>Settings & Help</h3>
+        <button onclick="openDialog('password-dialog')">Change Password</button>
+        <button onclick="openDialog('email-dialog')">Update Email</button>
+        <button onclick="alert('Contact support at support@mammopredict.com')">Help</button>
+      </section>
+
+      <!-- Password Dialog -->
+      <div id="password-dialog" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeDialog('password-dialog')">&times;</span>
+          <h3>Change Password</h3>
+          <input type="password" id="current-password" placeholder="Current Password" required />
+          <input type="password" id="new-password" placeholder="New Password" required />
+          <input type="password" id="confirm-password" placeholder="Confirm New Password" required />
+          <button onclick="updatePassword()">Submit</button>
+        </div>
+      </div>
+
+      <!-- Email Dialog -->
+      <div id="email-dialog" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeDialog('email-dialog')">&times;</span>
+          <h3>Update Email</h3>
+          <input type="email" id="new-email" placeholder="New Email" required />
+          <button onclick="updateEmail()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MammoPredict. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function openDialog(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeDialog(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function updatePassword() {
+      const current = document.getElementById('current-password').value;
+      const newPass = document.getElementById('new-password').value;
+      const confirm = document.getElementById('confirm-password').value;
+
+      if (!current || !newPass || !confirm) {
+        alert("All fields are required!");
+        return;
+      }
+      if (newPass !== confirm) {
+        alert("New passwords do not match.");
+        return;
+      }
+
+      fetch('/update_password', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ current_password: current, new_password: newPass, confirm_password: confirm })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) closeDialog('password-dialog');
+      });
+    }
+
+    function updateEmail() {
+      const newEmail = document.getElementById('new-email').value;
+      if (!newEmail) {
+        alert("Please enter your new email.");
+        return;
+      }
+
+      fetch('/update_email', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: newEmail })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) closeDialog('email-dialog');
+      });
+    }
+  </script>
+</body>
+</html>
