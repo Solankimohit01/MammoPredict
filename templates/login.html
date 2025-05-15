@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MammoPredict | Login</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo-nav">
+        <img src="/static/logo.jpg" alt="MammoPredict Logo" class="logo"/>
+        <h1>MammoPredict</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/faqs">FAQs</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="form-page">
+    <div class="container">
+      <h2>Login to MammoPredict</h2>
+      <form id="loginForm" action="/login" method="POST">
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <button type="submit" class="btn" onclick="validateLoginForm(event)">Login</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MammoPredict. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/static/scripts.js"></script>
+
+</body>
+</html>
+
+

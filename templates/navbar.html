@@ -1,0 +1,18 @@
+<nav style="background-color: #ffb3d9; padding: 15px; border-bottom: 2px solid #e673a1;">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto;">
+        <div style="font-size: 24px; font-weight: bold;">
+            <a href="/" style="color: #fff; text-decoration: none;">MammoPredict</a>
+        </div>
+        <div>
+            <a href="/" style="margin: 0 12px; color: white; font-weight: bold; text-decoration: none;">Home</a>
+            <a href="/symptom-checker" style="margin: 0 12px; color: white; font-weight: bold; text-decoration: none;">Symptom Checker</a>
+            {% if session.get('user') %}
+                <a href="/dashboard" style="margin: 0 12px; color: white; font-weight: bold; text-decoration: none;">Dashboard</a>
+                <a href="/logout" style="margin: 0 12px; color: white; font-weight: bold; text-decoration: none;">Logout</a>
+            {% else %}
+                <a href="/login" style="margin: 0 12px; color: white; font-weight: bold; text-decoration: none;">Login</a>
+                <a href="/register" style="margin: 0 12px; color: white; font-weight: bold; text-decoration: none;">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
